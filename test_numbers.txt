@@ -1,0 +1,2 @@
+123.45,en-US
+invalidNumber,fr-FR
