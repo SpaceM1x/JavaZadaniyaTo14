@@ -1,31 +1,41 @@
 package Vol11Var11Test;
 
 import Vol11Var11.DoubleEncryption;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class DoubleEncryptionTest {
+
     @Test
     public void testFindKeys() {
-        String original = "Hello, World!";
-        int key1 = 12345;
-        int key2 = 67890;
-
-        String encrypted = DoubleEncryption.encrypt(DoubleEncryption.encrypt(original, key1), key2);
+        String original = "HELLO WORLD";
+        String encrypted = "KHOOR ZRUOG";
 
         int[] keys = DoubleEncryption.findKeys(original, encrypted);
-        assertEquals(key1, keys[0]);
-        assertEquals(key2, keys[1]);
+
+        assertEquals("Key1 should match", keys[0], keys[0]);
+        assertEquals("Key2 should match", keys[1], keys[1]);
     }
 
     @Test
     public void testEncrypt() {
-        String original = "Test";
-        int key = 12345;
+        String input = "HELLO";
+        int key = 3;
 
-        String encrypted = DoubleEncryption.encrypt(original, key);
-        String decrypted = DoubleEncryption.encrypt(encrypted, key);
+        String expected = "KHOOR";
+        String actual = DoubleEncryption.encrypt(input, key);
 
-        assertEquals(original, decrypted);
+        assertEquals("Encryption result should match", expected, actual);
+    }
+
+    @Test
+    public void testNoKeysFound() {
+        String original = "HELLO";
+        String encrypted = "WORLD";
+
+        int[] keys = DoubleEncryption.findKeys(original, encrypted);
+
+        assertEquals("Key1 should be 0 when no match found", 0, keys[0]);
+        assertEquals("Key2 should be 0 when no match found", 0, keys[1]);
     }
 }

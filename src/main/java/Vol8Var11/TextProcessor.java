@@ -17,7 +17,7 @@ public class TextProcessor {
                 .count();
 
         return vowelsCount > consonantsCount
-                ? "More vowels"
-                : (consonantsCount > vowelsCount ? "More consonants" : "Equal vowels and consonants");
+                ? "Больше гласных"
+                : (consonantsCount > vowelsCount ? "Больше согласных" : "Поровну и гласных и согласных");
     }
 }
